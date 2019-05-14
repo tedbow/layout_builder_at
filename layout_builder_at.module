@@ -5,6 +5,8 @@
  * Provides hook implementations for Layout Builder Asymmetric Translations.
  */
 
+use Drupal\field\FieldStorageConfigInterface;
+
 /**
  * Implements hook_layout_builder_section_storage_alter().
  */
@@ -14,4 +16,17 @@ function layout_builder_at_layout_builder_section_storage_alter(array &$definiti
   // Override the section storage definition to allow access to the layout tab
   // on translations.
   $overrides_storage_definition->setClass('\Drupal\layout_builder_at\Plugin\SectionStorage\TranslatableOverridesSectionStorage');
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for 'field_storage_config'.
+ */
+function layout_builder_at_field_storage_config_presave(FieldStorageConfigInterface $field_storage) {
+  if ($field_storage->getType() != 'layout_section') {
+    // Only act on layout builder section fields.
+    return;
+  }
+
+  // Make the field translatable for asymmetric translations.
+  $field_storage->setTranslatable(true);
 }

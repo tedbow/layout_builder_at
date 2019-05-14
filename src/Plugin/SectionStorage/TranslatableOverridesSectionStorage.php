@@ -12,6 +12,13 @@ class TranslatableOverridesSectionStorage extends OverridesSectionStorage {
   /**
    * {@inheritdoc}
    */
+  protected function handleTranslationAccess(AccessResult $result, $operation, AccountInterface $account) {
+    return $result;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getSectionListFromId($id) {
     if (strpos($id, '.') !== FALSE) {
       list($entity_type_id, $entity_id) = explode('.', $id, 2);
