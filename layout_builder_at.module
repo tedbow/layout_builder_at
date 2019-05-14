@@ -11,7 +11,7 @@
 function layout_builder_at_layout_builder_section_storage_alter(array &$definitions) {
   /** @var \Drupal\layout_builder\SectionStorage\SectionStorageDefinition $overrides_storage_definition */
   $overrides_storage_definition = $definitions['overrides'];
-  // Override the section storage definition to allow access to the layout tab
-  // on translations.
+  // Override the section storage definition to load the entity from translation
+  // context when editing the layout.
   $overrides_storage_definition->setClass('\Drupal\layout_builder_at\Plugin\SectionStorage\TranslatableOverridesSectionStorage');
 }
