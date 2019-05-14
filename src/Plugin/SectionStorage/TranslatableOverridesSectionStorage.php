@@ -16,6 +16,7 @@ class TranslatableOverridesSectionStorage extends OverridesSectionStorage {
     if (strpos($id, '.') !== FALSE) {
       list($entity_type_id, $entity_id) = explode('.', $id, 2);
       $entity = $this->entityTypeManager->getStorage($entity_type_id)->load($entity_id);
+      // Get translation from context.
       $entity = \Drupal::service('entity.repository')->getTranslationFromContext($entity);
       if ($entity instanceof FieldableEntityInterface && $entity->hasField(static::FIELD_NAME)) {
         return $entity->get(static::FIELD_NAME);
