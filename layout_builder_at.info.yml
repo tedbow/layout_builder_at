@@ -1,0 +1,6 @@
+name: 'Layout Builder Asymmetric Translation'
+type: module
+core: 8.x
+package: 'Layout Builder'
+dependencies:
+  - layout_builder
