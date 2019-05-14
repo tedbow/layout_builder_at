@@ -2,3 +2,4 @@
 Use 8.1.x branch for Drupal Core 8.6.x
 Use 8.2.x branch for Drupal Core 8.7.x
 
+TODO - remove layout_builder_preprocess_language_content_settings_table in 8.2.x
