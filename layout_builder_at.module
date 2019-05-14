@@ -6,6 +6,7 @@
  */
 
 use Drupal\field\FieldStorageConfigInterface;
+use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
 
 /**
  * Implements hook_layout_builder_section_storage_alter().
@@ -22,7 +23,7 @@ function layout_builder_at_layout_builder_section_storage_alter(array &$definiti
  * Implements hook_ENTITY_TYPE_presave() for 'field_storage_config'.
  */
 function layout_builder_at_field_storage_config_presave(FieldStorageConfigInterface $field_storage) {
-  if ($field_storage->getType() != 'layout_section') {
+  if ($field_storage->getType() !== 'layout_section' && $field_storage->getName() === OverridesSectionStorage::FIELD_NAME) {
     // Only act on layout builder section fields.
     return;
   }
